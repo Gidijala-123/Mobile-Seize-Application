@@ -1,0 +1,89 @@
+html
+  head
+    title Forgot Password
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+    script(type="text/javascript" src="javascripts/angular.min.js")
+    script(type="text/javascript" src="javascripts/forgot.js")
+  body(ng-app="forgotapp")
+    .container
+      .col-md-4.col-md-offset-4(style="border:1px solid black; margin-top:150px; box-shadow: 10px 10px 10px 10px; padding: 15px; border-radius:3%;" ng-controller="forgotController")
+        h1.text-center Forgot Password
+        hr
+        form.form-group
+          input.form-control(type="email" ng-model="a.email" placeholder="Enter your Email")
+          br
+          b(style="color: red") Note :
+          span.text-warning Email should be registered email
+          br
+          br
+          button.btn.btn-info(ng-click="forgot(a)") Send OTP
+          br
+          br
+          a(href="/")
+            i.glyphicon.glyphicon-chevron-left(style="margin-left:150px; border:1px solid black; padding:10px; border-radius:50%; background-color:lightblue;")
+
+  script.
+    var app = angular.module('forgotapp', []);
+
+    app.controller('forgotController', function($scope,$http)
+    {
+      $scope.forgot = function(a)
+      {
+        $http({
+          method : 'POST',
+          url : '/postforgot',
+          data : $scope.a
+        }).then(function success(response)
+        {
+          alert('Check your mail for OTP')
+          window.location.href='/';
+        }, function error(response)
+        {
+          alert('error occured, please try again later')
+        })
+      }
+    });
+
+  script.
+    window.onload = function() {
+    document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    }, false);
+    document.addEventListener("keydown", function(e) {
+    // "J" key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+    alert('not allowed');
+    disabledEvent(e);
+    }
+    // "F12" key
+    if (event.keyCode == 123) {
+    alert('Too smart!\nBut you are not allowed for this action');
+    disabledEvent(e);
+    }
+    }, false);
+    function disabledEvent(e){
+    if (e.stopPropagation){
+    e.stopPropagation();
+    } else if (window.event){
+    window.event.cancelBubble = true;
+    }
+    e.preventDefault();
+    return false;
+    }
+    };
+      
+  script.
+    document.onkeydown = function(e) 
+    {
+      if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 73 || e.keyCode === 85 || e.keyCode === 117)) 
+        {
+          alert('Too smart!\nBut you are not allowed for this action');
+          return false;
+        } 
+      else 
+        {
+          return true;
+        }
+    };
