@@ -1,0 +1,235 @@
+html
+  head
+    title Login and Signup page
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css")
+    link(href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css")
+    link(rel='stylesheet' type='text/css' href='stylesheets/signlog.css')
+  
+  body(ng-app="loginapp")
+    
+    #stars
+    #stars2
+    #stars3
+    #title
+      span
+        | Welcome to
+      br
+      span.qw
+        | Mobile Seize Application
+
+    .panda
+      .ear
+      .face
+        .eye-shade
+        .eye-white
+          .eye-ball
+        .eye-shade.rgt
+        .eye-white.rgt
+          .eye-ball
+        .nose
+        .mouth
+      .body  
+      .foot
+        .finger
+      .foot.rgt
+        .finger
+
+      input#flippercheckbox.flippercheckbox(type="checkbox" name="flippercheckbox" hidden="")
+      .form_container
+        .formsignup
+          form(ng-controller="signupController" style="background-color:#099F9F;border-radius:1vw;")
+            .hand
+            .hand.rgt
+            h2
+              span S
+              span i
+              span g
+              span n
+              |-
+              span U
+              span p
+            .field
+              span.label__icon.fa.fa-envelope
+              input#signupname(type="email" ng-model="reg.email" placeholder="Enter your mail id" required="" autocomplete="off")
+              label(for="signupname") Email ID
+            .field
+              span.label__icon.fa.fa-eye.toggle-password(toggle="#password1")
+              input#password1(type="password" ng-model="reg.pwd" onkeyup='check();' placeholder="Enter your password" required autocomplete=true)
+              label(for="password1") Password 
+            .field
+              span.label__icon.fa.fa-eye.toggle-password(toggle="#password2")
+              input#password2(type="password" ng-model="reg.pwd2" onkeyup='check();' placeholder="Confirm your password" required autocomplete=true)
+              label#message(for="password2") Confirm Password   
+            .bottomDiv        
+              button.btn.bbtn2(ng-click="signup(reg)" type="submit") Signup
+              .label
+                label.footer1 Already a member?
+                label.footer4.hover1(for="flippercheckbox") Login here!
+
+        .formlogin        
+          form(ng-controller="loginController" style="background-color:#72043E;border-radius:1vw;")
+            .hand
+            .hand.rgt
+            h2
+              span(style="font-size: 2vw;") L
+              span o
+              span g
+              span i
+              span(style="font-size: 2vw;") n
+            .field
+              span.label__icon.fa.fa-user(style="font-size:1.55vw;margin-left:1px;")
+              input#uname(type="text" ng-model="log.uname" placeholder="Enter your name" required autocomplete=true)
+              label(for="uname") User name
+            .field
+              span.label__icon.fa.fa-envelope
+              input#loginname(type="email" ng-model="log.email" placeholder="Enter your mail id" required autocomplete=true)
+              label(for="loginname") Email ID
+            .field
+              span.label__icon.fa.fa-eye.toggle-password(toggle="#password3")
+              input#password3(type="password" ng-model="log.pwd" placeholder="Enter your password" required autocomplete=true)
+              label(for="password3") Password          
+            .bottomDiv
+              button.btn.bbtn2(type="submit" value="Login" ng-click="login(log)") Login
+              .label
+                a.footer1(href="/forgot" style="text-decoration:none;") Forgot password ?
+                label.footer4.hover2(for="flippercheckbox" ) Goto Signup
+        
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js")
+  script(src="https://code.jquery.com/jquery-2.2.4.min.js")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+  script(type="text/javascript" src="javascripts/angular.min.js")
+  script.
+    $('#password1').focusin(function(){
+    $('form').addClass('up')
+    });
+    $('#password1').focusout(function(){
+    $('form').removeClass('up')
+    });/*while entering signup password*/
+
+    $('#password2').focusin(function(){
+    $('form').addClass('up')
+    });
+    $('#password2').focusout(function(){
+    $('form').removeClass('up')
+    });/*while entering singup confirmation password*/
+
+    $('#password3').focusin(function(){
+    $('form').addClass('up')
+    });
+    $('#password3').focusout(function(){
+    $('form').removeClass('up')
+    });/*while entering login password*/
+
+    // Panda Eye move
+    $(document).on( "mousemove", function( event ) {
+    var dw = $(document).width() / 5;
+    var dh = $(document).height() / 12;
+    var x = event.pageX/ dw;
+    var y = event.pageY/ dh;
+    $('.eye-ball').css({
+    width : x,
+    height : y
+    });
+    });
+
+  script.
+    var app = angular.module('loginapp', []);
+    app.controller('signupController', function($scope,$http){
+    //to join controller and view together we use scope
+      $scope.signup = function(reg){
+        $http({
+          method : 'POST',
+          url : '/postsignup',
+          data : $scope.reg
+        }).then( function success(response){
+          $scope.reg = {};
+          alert("Registered Successfully! 👍");
+        }, function error(response){
+          alert('Email ID exists! 🙁'); 
+        });
+      }
+    });
+
+    app.controller('loginController', function($scope,$http,$window){
+      $scope.login = function(log){
+        $http({
+          method:'POST',
+          url: '/postlogin',
+          data: $scope.log
+        }).then(function success(response){
+          alert('Welcome Mr.'+log.uname+'🤗'+'\nClick OK to redirect to home page!');
+          $window.location.href = '/home'
+        }, function error(response){
+          //- $scope.log = {};
+          alert('Invalid Credentials..!');
+        });
+      }
+
+    });
+
+  script.
+    $(".toggle-password").click(function() {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
+    });
+
+  script.
+    var check=function(){
+    if(document.getElementById('password1').value==document.getElementById('password2').value)
+    {
+    document.getElementById('message').style.color='#08FB25';
+    document.getElementById('message').style.fontWeight='bold';
+    document.getElementById('message').style.textShadow='0 0 2.3px black';
+    document.getElementById('message').innerHTML='Passwords matching..!';
+    document.getElementById('submit').disabled=false;
+    }
+    else
+    {
+    document.getElementById('message').style.color='#FE0303';
+    document.getElementById('message').style.fontWeight='bold';
+    document.getElementById('message').style.textShadow='0 0 2.3px black';
+    document.getElementById('message').innerHTML="Passwords doesn't matched..!";
+    document.getElementById('submit').disabled=true;
+    }
+    };
+    
+  script.
+    window.onload = function() {
+    document.addEventListener("contextmenu", function(e){
+    e.preventDefault();
+    }, false);
+    document.addEventListener("keydown", function(e) {
+    // "J" key
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+    alert('not allowed');
+    disabledEvent(e);
+    }
+    // "F12" key
+    if (event.keyCode == 123) {
+    alert('Too smart!\nBut you are not allowed for this action');
+    disabledEvent(e);
+    }
+    }, false);
+    function disabledEvent(e){
+    if (e.stopPropagation){
+    e.stopPropagation();
+    } else if (window.event){
+    window.event.cancelBubble = true;
+    }
+    e.preventDefault();
+    return false;
+    }
+    };
+    
+  

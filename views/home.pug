@@ -1,0 +1,1186 @@
+html
+  head
+    title GBR's Mobile Seize Application
+    //vh=*16.9% of px(top,bottom),vw=7.8% of px(left,right)
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(type='image/jpg', href='1.jpg', rel='icon')
+    link(rel='stylesheet', href='stylesheets/buttons.dataTables.min.css')
+    link(rel='stylesheet', href='stylesheets/jquery.dataTables.min.css')    
+    link(rel='stylesheet', href='stylesheets/dataTables.bootstrap.css')
+    link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='stylesheets/component.css')
+    link(rel='stylesheet', href='stylesheets/default.css')
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css")
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css")
+    link(href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet")
+    link(href='https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css', rel='stylesheet')
+    link(href='https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css', rel='stylesheet')
+    link(rel='shortcut icon' href='../favicon.ico')
+
+  style.
+    @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+    html{
+    max-height: 100%;
+    overflow: hidden;
+    }
+    html::-webkit-scrollbar{
+    display: none;
+    }
+    body{
+    -webkit-transition: all 1s ease-in-out;
+    height:100%;
+    position:fixed;
+    background-color:lightyellow;
+    background-size:cover;
+    font-family:Tw Cen MT;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    }
+    body::-webkit-scrollbar{
+    display:none;
+    }
+    .dnt,.dontshow,.dontdisplay{
+    display:none;
+    }
+    .header{
+    background:url("images/b (5).jpg");
+    background-repeat:none;
+    height:3.7vw;
+    }
+    *{
+    max-width:100%;
+    }
+    span{
+    font-size: 18px;
+    font-weight:bold;
+    font-family:Agency FB;
+    color:black;
+    }
+    .file-list li {
+    height: 50px;
+    line-height: 50px;
+    margin-left: .5em;
+    border: none;
+    overflow: hidden;
+    }
+    .error {
+    background-color: #d65d38;
+    color: white;
+    }
+    *, *::before, *::after {
+    box-sizing: border-box;
+    }
+    ul, li {
+    margin: 0;
+    padding: 0;
+    }
+    .data{
+    font-weight: bold;
+    }
+    .fa-spin{
+    font-size:35px;
+    color:white !important;
+    }
+      
+  body
+    section#container
+      header.header
+        .sidebar-toggle-box
+          .fa.fa-bars.tooltips(data-placement='right', data-original-title='Toggle Navigation')
+        #date_time
+        a.inner-width-neon(href='/logout')
+          span.bg-width
+          span.btn-text Logout 
+        a.inner-width-neon(data-toggle='tab', href='#help')
+          span.bg-width
+          span.btn-text Help
+  
+      aside
+        #sidebar.nav-collapse(style='background:url("images/tech.png");background-repeat:none;position:fixed;overflow-x: hidden;')
+          ul#nav-accordion.sidebar-menu
+            p.centered
+              a(href='#')
+                .flip-box
+                  .flip-box-inner
+                    .flip-box-front
+                      img.img-circle(src='images/mobilelogo.jpg')
+                    .flip-box-back
+                      img.img-circle(src='images/gbr.jpg')
+
+            
+              p.qw(style="margin:1vw 0px 2vw 1.5vw;") Mobile Seize      
+                i(style="font-size:2vw;").fa.fa-mobile.fa-spin
+            li.active
+              a(data-toggle='tab', href='#dboard' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-address-card
+                span(style="color:white;font-size:1.5vw;") Dashboard
+            li.sub-menu
+              a(data-toggle='tab', href='#totallist' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-building
+                span(style="color:white;font-size:1.5vw;") Over-all list
+            li.sub-menu
+              a(data-toggle='tab', href='#officelist' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-list-ul
+                span(style="color:white;font-size:1.5vw;") Mobiles at office
+            li.sub-menu
+              a(data-toggle='tab', href='#returnedlist' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-refresh
+                span(style="color:white;font-size:1.5vw;") Mobiles Returned
+            li.sub-menu
+              a(data-toggle='tab', href='#search-edit' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-search
+                span(style="color:white;font-size:1.5vw;") Search
+            li.sub-menu
+            
+              a(data-toggle='tab', href='#contact' style="margin-bottom:1vw;padding: 0.4vw 0vw 1.5vw 0.8vw;")
+                i(style="color:#F9C6E8;font-size:1.3vw;").fa.fa-phone 
+                span(style="color:white;font-size:1.5vw;") Contact Staff
+ 
+      section#main-content
+        section.wrapper
+          .col-md-13(style="margin-left:1.4vw;")
+            .tab-content
+              
+              #dboard.tab-pane.fade.in.active
+                p.anim-typewriter(style="margin-left:34.4vw;") DashBoard
+                #form.tab-pane
+                  form.form-group(action='/hh',method='post')
+                      center
+                        .col-md-4
+                          .dd1
+                            p.p1
+                              a(data-toggle='tab',href=".ttlist" style="color:white;text-shadow:3px 3px 4px black;text-decoration:none;")
+                               | Total
+                               br
+                               | Mobiles
+                            
+                            .pp1 #{count}
+                          label Date
+                          br
+                          input.form-control#dat2(type="Date" name="Date" required="")
+                          br
+                          br
+                          label Time
+                          br
+                          input.form-control#tim2(type="Time" name="Time" required="")
+                          br
+                          br
+                          label Student Name
+                          br
+                          input.form-control#snm2(type="text" name="sname" required="")
+                          br
+                          br
+                          label Parent Name
+                          br
+                          input.form-control#pnm2(type="text" name="pname" required="")
+                          br
+                          br
+                          label Employee Name
+                          br
+                          input.form-control#enm2(type="text" name="ename" required="")
+                          br
+                          br
+                          label College
+                          br
+                          select.form-control#clg2(type="" name="clg" required="")
+                            option ACET
+                            option ADTP
+                            option ASCS
+                            option T-Hub
+                            option Others
+                          br
+                          br
+
+                        .col-md-4
+                          .dd1
+                            p.p1
+                              a(data-toggle='tab',href=".tolist" style="color:white;text-shadow:3px 3px 4px black;text-decoration:none;")
+                               | Mobiles
+                               br
+                               | at office
+                            
+                            .pp1 #{count1}
+                          label Branch
+                          br
+                          select.form-control#brc2(name="brch" required="")
+                            option(value='MCA') MCA
+                            option(value='BCA') BCA
+                            option(value='Animation') Animation
+                          br
+                          br
+                          label Year of Study
+                          br
+                          input.form-control#yr2(type="text" name="year" required="")
+                          br
+                          br
+                          label Section
+                          br
+                          select.form-control#sec2(type="text" name="sec" required="")
+                            option I
+                            option II
+                            option III
+                          br
+                          br 
+                          label Student Mobile number00
+                          br
+                          input.form-control#spn2(type="number" name="spno" required="" )
+                          br
+                          br
+                          label Parent Mobile number
+                          br
+                          input.form-control#ppn2(type="number" name="ppno" required="" )
+                          br
+                          br
+                          label Employee Mobile number
+                          br
+                          input.form-control#epn2(type="number" name="epno" required="" )
+
+                        .col-md-4
+                          .dd1
+                            p.p1
+                              a(data-toggle='tab',href=".trlist" style="color:white;text-shadow:3px 3px 4px black;text-decoration:none;") Returned Mobiles
+                            
+                            .pp1 #{count2}
+                          label Roll number
+                          br
+                          input.form-control#rno2(type="number" name="rno" required="" )
+                          br
+                          br
+                          label Generated_ID
+                          br
+                          input.form-control#gid2(type="text" name="gid" disabled)
+                          br
+                          br
+                          label Employee_ID
+                          br
+                          input.form-control#eid2(type="text" name="eid" required="" )
+                          br
+                          br
+                          label Mobile model
+                          br
+                          input.form-control#mdl2(type="text" name="mmodel" required="" )
+                          br
+                          br
+                          label Mobile color
+                          br
+                          input.form-control#mcl2(type="text" name="mclr" required="" )
+                          br
+                          br
+                          label IMEI number 
+                          br
+                          input.form-control#ime2(type="number" name="imei" placeholder="Press *#06# for IMEI number" required="" )
+                        .col-md-12(style="margin-top:2vw;")
+                          label Reason
+                          br
+                          textarea.form-control#rsn2(rows="5" cols="56" placeholder="Enter proper reason for seizing" type="text" name="rsn" required="" )
+                          br
+                          br
+                          center
+                            button.pdf.btn2 Submit and Print
+
+              #totallist.tab-pane.fade.align.ttlist
+                p.anim-typewriter List of Total Mobiles
+                .table-responsive
+                  table#example2.table.table-striped
+                    thead
+                      tr
+                        th Date
+                        th Time
+                        th Generated_ID
+                        th RollNo
+                        th Stud_name
+                        th College
+                        th Branch
+                        th Year
+                        th Section
+                        th Stud_phno
+                        th Parent_name
+                        th Parent_phno
+                        th Mobile_model
+                        th IMEI_number
+                        th Mobile_color
+                        th Reason
+                        th Employee_name
+                        th Employee_phno
+                        th Employee_ID
+                        th Status
+                        th Action
+                    tbody
+                      each member in data
+                        tr
+                          td #{member.Date} 
+                          td #{member.Time}
+                          td #{member._id}
+                          td #{member.rno}
+                          td #{member.sname}
+                          td #{member.clg}
+                          td #{member.brch}
+                          td #{member.year}
+                          td #{member.sec}
+                          td #{member.spno}
+                          td #{member.pname}
+                          td #{member.ppno}
+                          td #{member.mmodel}
+                          td #{member.imei}
+                          td #{member.mclr}
+                          td #{member.rsn}
+                          td #{member.ename}
+                          td #{member.epno}
+                          td #{member.eid}
+                          td #{member.status}
+                          td(style="height:2vw;")
+                            button.bbb(value=member.rno) Transfer
+                           
+              #officelist.tab-pane.fade.align.tolist
+                p.anim-typewriter List of Mobiles at Office
+                .table-responsive
+                  table#example3.table.table-striped
+                    thead
+                      tr
+                        th Date
+                        th Time
+                        th Generated_ID
+                        th RollNo
+                        th Stud_name
+                        th College
+                        th Branch
+                        th Year
+                        th Section
+                        th Stud_phno
+                        th Parent_name
+                        th Parent_phno
+                        th Mobile_model
+                        th IMEI_number
+                        th Mobile_color
+                        th Reason
+                        th Employee_name
+                        th Employee_phno
+                        th Employee_ID
+                    tbody
+                      each member in data1
+                        tr
+                          td #{member.Date}
+                          td #{member.Time}
+                          td #{member._id}
+                          td #{member.rno}
+                          td #{member.sname}
+                          td #{member.clg}
+                          td #{member.brch}
+                          td #{member.year}
+                          td #{member.sec}
+                          td #{member.spno}
+                          td #{member.pname}
+                          td #{member.ppno}
+                          td #{member.mmodel}
+                          td #{member.imei}
+                          td #{member.mclr}
+                          td #{member.rsn}
+                          td #{member.ename}
+                          td #{member.epno}
+                          td #{member.eid}
+
+              #returnedlist.tab-pane.fade.align.trlist
+                p.anim-typewriter List of Mobiles Returned
+                .table-responsive
+                  table#example4.table.table-striped
+                    thead
+                      tr
+                        th Date
+                        th Time
+                        th Generated_ID
+                        th RollNo
+                        th Stud_name
+                        th College
+                        th Branch
+                        th Year
+                        th Section
+                        th Stud_phno
+                        th Parent_name
+                        th Parent_phno
+                        th Mobile_model
+                        th IMEI_number
+                        th Mobile_color
+                        th Reason
+                        th Employee_name
+                        th Employee_phno
+                        th Employee_ID
+                    tbody
+                      each member in data2
+                        tr
+                          td #{member.Date}
+                          td #{member.Time}
+                          td #{member._id}
+                          td #{member.rno}
+                          td #{member.sname}
+                          td #{member.clg}
+                          td #{member.brch}
+                          td #{member.year}
+                          td #{member.sec}
+                          td #{member.spno}
+                          td #{member.pname}
+                          td #{member.ppno}
+                          td #{member.mmodel}
+                          td #{member.imei}
+                          td #{member.mclr}
+                          td #{member.rsn}
+                          td #{member.ename}
+                          td #{member.epno}
+                          td #{member.eid}
+
+              #search-edit.tab-pane.fade.align
+                p.anim-typewriter(style="margin-bottom:0vh;") Search <i style="color:#A40C0C">&</i> Editing
+                .srcbar
+                  #wrap
+                    .field
+                    form.srch
+                      input#myInput(autocomplete="off" placeholder="Search using RollNo only" type="text" onkeyup="myFunction()")
+                      .btnwrap
+                        .spark
+                        .spark
+                        .spark
+                        .spark
+                        .spark
+                        .spark
+                        b Search
+                        .blob
+                        input(type="submit" value="Search")
+                .table-responsive(style="height:49vh;margin-top:1vh;border:none;outline:none;")
+                  table#example5.table.table-striped(style="display:none;")
+                    thead
+                      tr
+                        th Date
+                        th Time
+                        th Generated_ID
+                        th RollNo
+                        th Stud_name
+                        th College
+                        th Branch
+                        th Year
+                        th Section
+                        th Stud_phno
+                        th Parent_name
+                        th Parent_phno
+                        th Mobile_model
+                        th IMEI_number
+                        th Mobile_color
+                        th Reason
+                        th Employee_name
+                        th Employee_phno
+                        th Employee_ID
+                        th Action
+                    tbody
+                      each member in data3
+                        tr
+                          td #{member.Date}
+                          td #{member.Time}
+                          td #{member._id}
+                          td #{member.rno}
+                          td #{member.sname}
+                          td #{member.clg}
+                          td #{member.brch}
+                          td #{member.year}
+                          td #{member.sec}
+                          td #{member.spno}
+                          td #{member.pname}
+                          td #{member.ppno}
+                          td #{member.mmodel}
+                          td #{member.imei}
+                          td #{member.mclr}
+                          td #{member.rsn}
+                          td #{member.ename}
+                          td #{member.epno}
+                          td #{member.eid}
+                          td    
+                            button.edit(onClick="toggle();" value=member.rno) Edit
+                              
+                  form.form-group#fmgrp.dontdisplay(action='/update',method='post')
+                    .slideInDown
+                      .col-md-4
+                        label.lb Date
+                        br
+                        input.inp#Date.form-control(type="Date" name="Date" )
+                        br
+                        br
+                        label.lb Time
+                        br
+                        input.inp#Time.form-control(type="Time" name="Time" )
+                        br
+                        br
+                        label.lb Student Name
+                        br
+                        input.inp#sname.form-control(type="text" name="sname" )
+                        br
+                        br
+                        label.lb Parent Name
+                        br
+                        input.inp#pname.form-control(type="text" name="pname" )
+                        br
+                        br
+                        label.lb Employee Name
+                        br
+                        input.inp#ename.form-control(type="text" name="ename" )
+                        br
+                        br
+                        label.lb College
+                        br
+                        select.inp#clg.form-control(type="" name="clg")
+                          option ACET
+                          option ADTP
+                          option ASCS
+                          option T-Hub
+                          option Others
+                        br
+                        br
+                      .col-md-4
+                        label.lb Branch
+                        br
+                        select.inp#brch.form-control(name="brch")
+                          option(value='MCA') MCA
+                          option(value='BCA') BCA
+                          option(value='Animation') Animation
+                        br
+                        br
+                        label.lb Year of Study
+                        br
+                        input.inp#year.form-control(type="text" name="year" )
+                        br
+                        br
+                        label.lb Section
+                        br
+                        select.inp#sec.form-control(type="text" name="sec" )
+                          option I
+                          option II
+                          option III
+                        br
+                        br 
+                        label.lb Student Mobile number
+                        br
+                        input.inp#spno.form-control(type="number" name="spno" )
+                        br
+                        br
+                        label.lb Parent Mobile number
+                        br
+                        input.inp#ppno.form-control(type="number" name="ppno" )
+                        br
+                        br
+                        label.lb Employee Mobile number
+                        br
+                        input.inp#epno.form-control(type="number" name="epno" )
+                      .col-md-4
+                        label.lb Roll number
+                        br
+                        input.inp#rno.form-control(type="text" name="rno" )
+                        br
+                        br
+                        label.lb Generated_ID
+                        br
+                        input.inp#_id.form-control(type="text" name="gid" disabled)
+                        br
+                        br
+                        label.lb Employee_ID
+                        br
+                        input.inp#eid.form-control(type="text" name="eid" )
+                        br
+                        br
+                        label.lb Mobile model
+                        br
+                        input.inp#mmodel.form-control(type="text" name="mmodel" )
+                        br
+                        br
+                        label.lb Mobile color
+                        br
+                        input.inp#mclr.form-control(type="text" name="mclr" )
+                        br
+                        br
+                        label.lb IMEI number 
+                        br
+                        input.inp#imei.form-control(type="number" name="imei" placeholder="Press *#06# for IMEI number" )
+                      .col-md-12
+                        label(style="width:1500px;height:50px;").lb Reason
+                        br
+                        textarea.inp#rsn.form-control(rows="3" cols="50" placeholder="Enter valid reason" type="text" name="rsn" )
+                        br
+                        input.inp.btn4(type='submit', name='', value='update')                           
+
+              #contact.tab-pane.fade.align
+                p.anim-typewriter Contacts - Tab
+                .containerr.demo-4                      
+                  header.clearfix
+                    h3(style="font-size:3.5vw;") Adtiya College Of Institutions 
+                      button#xyz &#174; 
+                      span.ck(style="font-size:2vw;") A place for Versatile and Experienced faculty
+                  .main.clearfix
+                    .x1
+                      p.bn
+                        |Aditya PG College
+                        br
+                        |Ayodhya Nagar
+                        br
+                        |Ph:0884-2346661
+                        br
+                        |Kakinada
+                        br
+                        |Andhra Pradesh
+                        br
+                        |Pin:533437
+                        br
+                        |India.
+                    .x2
+                      p(style="color:#34495e;text-shadow:0px 0px 2px black;font-size:3vw;") Click on this<span style="font-size:2vw;">&#x1f447;</span>
+                        #dl-menu.dl-menuwrapper
+                          button.dl-trigger.btn6
+                          ul.dl-menu
+                            li
+                              a.x3(style="text-decoration:none;") MCA
+                              ul.dl-submenu
+                                li
+                                  a.x3(style="text-decoration:none;") 1st Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntm11(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntm12(style="text-decoration:none;") ADTP
+                                li
+                                  a.x3(style="text-decoration:none;") 2nd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntm21(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntm22(style="text-decoration:none;") ADTP
+                                li
+                                  a.x3(style="text-decoration:none;") 3rd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntm31(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntm32(style="text-decoration:none;") ADTP
+                            li
+                              a.x3(style="text-decoration:none;") BCA
+                              ul.dl-submenu
+                                li
+                                  a.x3(style="text-decoration:none;") 1st Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntb11(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntb12(style="text-decoration:none;") ADTP
+                                li
+                                  a.x3(style="text-decoration:none;") 2nd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntb21(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntb22(style="text-decoration:none;") ADTP
+                                li
+                                  a.x3(style="text-decoration:none;") 3rd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cntb31(style="text-decoration:none;") ACET
+                                    li
+                                      a.x3#cntb32(style="text-decoration:none;") ADTP
+                            li
+                              a.x3(style="text-decoration:none;") Animation
+                              ul.dl-submenu
+                                li
+                                  a.x3(style="text-decoration:none;") 1st Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cnta11(style="text-decoration:none;") ASCS 
+                                li
+                                  a.x3(style="text-decoration:none;") 2nd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x#cnta21(style="text-decoration:none;") ASCS 
+                                li
+                                  a.x3(style="text-decoration:none;") 3rd Year
+                                  ul.dl-submenu
+                                    li
+                                      a.x3#cnta31(style="text-decoration:none;") ASCS
+                                 
+
+                  .asd
+                    #m11.dnt.slideInDown
+                      h4 MCA 1st year ACET Faculty details
+                      .cnt0
+                        .cnth1(style='background:url("images/nrk.jpg");background-size:cover;')
+                        .cnth2
+                          h4.mn Class Teacher
+                          .cnthc1
+                            |Name : N.Ramakrishna
+                            br
+                            |EID : YUU8EKK3
+                            br
+                            |Deals : OOAD
+                            br
+                            |Phone : 9898839892
+                          .cnthc2
+                            |Area : Ayodhya nagar
+                            br
+                            |Place : Kakinada
+                            br
+                            |Pin : 533004
+                    
+                      .cntf0
+                        .cntr
+                          .cntf1(style="background:url('images/princy.jpg');background-size:cover;")
+                          .cntf2
+                              |Name: D.Beulah
+                              br
+                              |Deals: STM
+                              br
+                              |EID: YU097J6
+                        .cntr(style="margin-left:4.4vw;")
+                          .cntf1(style=" background:url('images/satya.jpg');background-size:cover;")
+                          .cntf2
+                              |Name: G.Satya
+                              br
+                              |Deals: Computer Networks
+                              br
+                              |EID: LDK0097J6
+                        .cntr(style="margin-left:4.4vw;")
+                          .cntf1(style=" background:url('images/kumar.jpg');background-size:cover;")
+                          .cntf2
+                              |Name: U.L.N.kumar
+                              br
+                              |Deals: Bigdata Analytics
+                              br
+                              |EID: GH8818F4
+                        .cntr(style="float:right;margin-right:1vw;")
+                          .cntf1(style=" background:url('images/chandra.jpg');background-size:cover;background-position:center center;")
+                          .cntf2
+                            |Name: V.Chandrakumar
+                            br
+                            |Deals: E-Commerce
+                            br
+                            |EID: KP32AS412
+                          
+
+                    #m12.dnt.slideInDown
+                      h4 MCA 1st year ADTP Faculty details
+                      
+
+                    #m21.dnt.slideInDown
+                      h4 MCA 2nd year ACET Faculty details
+                      
+
+                    #m22.dnt.slideInDown
+                      h4 MCA 2nd year ADTP Faculty details
+                      
+
+                    #m31.dnt.slideInDown
+                      h4 MCA 3rd year ACET Faculty details
+                      
+                      
+                    #m32.dnt.slideInDown
+                      h4 MCA 3rd year ADTP Faculty details
+                      
+
+                    #b11.dnt.slideInDown
+                      h4 BCA 1st year ACET Faculty details
+                      
+
+                    #b12.dnt.slideInDown
+                      h4 BCA 1st year ADTP Faculty details
+                      
+
+                    #b21.dnt.slideInDown
+                      h4 BCA 2nd year ACET Faculty details
+                      
+
+                    #b22.dnt.slideInDown
+                      h4 BCA 2nd year ADTP Faculty details
+                      
+
+                    #b31.dnt.slideInDown
+                      h4 BCA 3rd year ACET Faculty details
+                      
+
+                    #b32.dnt.slideInDown
+                      h4 BCA 3rd year ADTP Faculty details
+                      
+
+                    #a11.dnt.slideInDown
+                      h4 Animation 1st year ASCS - Faculty details
+                      
+
+                    #a21.dnt.slideInDown
+                      h4 Animation 2nd year ASCS - Faculty details
+                      
+
+                    #a31.dnt.slideInDown
+                      h4  Animation 3rd year ASCS - Faculty details
+                      
+              #help.tab-pane.fade.align
+                p.anim-typewriter Help tab
+                .conta-fluid(style="max-width:100%;margin-left:40px;")
+                  .col-md-12
+                    p.rr Click on any of the following Questions
+                      #navbar
+                        ul
+                          li
+                            a.g2(href="#link1" style="text-decoration:none;") 1) Button Click functionality is not working
+                          li
+                            a.g2(href="#link2" style="text-decoration:none;") 2) Data is not getting updated
+                          li
+                            a.g2(href="#link3" style="text-decoration:none;") 3) How to delete particular data?
+                          li
+                            a.g2(href="#link4" style="text-decoration:none;") 4) Icons are not loading..
+                          li
+                            a.g2(href="#link5" style="text-decoration:none;") 5) Updated data is not showing in Datatables
+                          li
+                            a.g2(href="#link6" style="text-decoration:none;") 6) Unable to open MongoShell
+                          li
+                            a.g2(href="#link7" style="text-decoration:none;") 7) Some important MongoShell commands
+                          li
+                            a.g2(href="#link8" style="text-decoration:none;") 8) Update operation is not working on "rno" field
+                            br
+                            br
+                            br
+                            br
+                      .conta.dontshow(style='max-width:100%;color:black;')
+                        #link1.gg
+                          p Check for errors in click.js folder at Template/public/javascripts/click.js 
+
+                        #link2.gg
+                          p a)Check if you missed any ID for that particular field any check the same in index.js folder
+                              br
+                              |b)Check your database i.e;Monogdb is working in background.if crashed please reinstall the app for concern site and run the app again.
+                              br
+                              |c)If you're calling an existing fieldname using same ID from anywhere in the code,then such field won't work because an ID should be unique in entire code.
+                              br
+
+                        #link3.gg
+                          p a)Goto monogdb and apply the following steps
+                               br
+                               |>use Mob_db  /* It'll switches to database named 'Mob_db' */
+                               br
+                               |>db.std.remove({""})  /* It removes entire collection named 'std' */
+                               br
+                               |Eg: db.std.remove{{"rno":"17P31F0011"}}  /* To remove specific data matched with rollno '17P31F0011' */
+                        #link4.gg
+                          p a)Check your internet connection and refresh the page.Some bootstrap links requires internet connection.
+                               br
+                               |b)Make sure that indentation is correct in your main code.
+                        #link5.gg
+                          p Once refresh your home page and check again. If problem still remains restart npm and check again.
+
+                        #link6.gg
+                          p If you are unable to open mongoshell i.e;if you try to open mongoshell it forcely closes without mentioning any error.
+                          br
+                          p Such case arises if the service got stopped in background.
+                          br
+                          p To solve this problem open task manager>goto services tab>find mongodb>right click on it and click on start.Now reopen the shell and will works fine.
+                        #link7.gg
+                          p 
+                          |1)cls
+                          br
+                          |To clear the screen
+                          br
+                          br
+                          |2)show dbs
+                          br
+                          |Displays created database list
+                          br
+                          br
+                          |3)use a
+                          br
+                          |Creates a database with name a if not exists. If it is an existing db name then it switches to that databases
+                          br
+                          br
+                          |4)show collections
+                          br
+                          |Displays collections in that database
+                          br
+                          br
+                          |5)db.createCollection('a_coll')
+                          br
+                          |Creates a collection with name std
+                          br
+                          br
+                          |6)db.a_coll.drop()
+                          br
+                          |Removes a_coll collection from database
+                          br
+                          br
+                          |7)db.a_coll.insert({"name":"gbr","rno":111,"tel":89,"eng":90,"sci":88})
+                          br
+                          |Adds data with fields in a_coll collection
+                          br
+                          br
+                          |8)db.a_coll.find({}).pretty()
+                          br
+                          |Displays all data from a_coll in a format
+                          br
+                          br
+                          |9)db.a_coll.find({"name":"gbr"}).pretty()
+                          br
+                          |Displays records that matched with name as gbr
+                          br
+                          br
+                          |10)db.a_coll.update({"name":"gbr"},{$set:{"tel":95}})
+                          br
+                          |Updates or Modifies data with field name tel when matches with name gbr
+
+                        #link8.gg
+                          p
+                          |This application doesn't support updation of RollNo by clicking on update button.
+                          br
+                          |You have to do this manually from monogdb application
+                          br
+                          |>db.std.update({"sname":"abc"},{$set:{"rno":"17P31F0011"}})
+                          br
+                          |It'll changes "rno" to "17P31F0011" whose "sname" is matched with "abc" from the collection name "std".
+
+    #warning-message This website is only viewable in landscape mode
+    // js placed at the end of the document so the pages load faster
+    script(src='javascripts/jquery.js')
+    script(src='javascripts/bootstrap.min.js')
+    script(src='javascripts/jquery-ui-1.9.2.custom.min.js')
+    script(src='javascripts/jquery.ui.touch-punch.min.js')
+    script(src='javascripts/jquery.dcjqaccordion.2.7.js')
+    //- script(src='javascripts/jquery.scrollTo.min.js')
+    //- script(src='javascripts/jquery.nicescroll.js')
+    script(src='javascripts/common-scripts.js')
+    script(src='javascripts/jquery.dataTables.min.js')
+    script(src='javascripts/dataTables.buttons.min.js')
+    script(src='javascripts/buttons.flash.min.js')
+    script(src='javascripts/jszip.min.js')
+    script(src='javascripts/pdfmake.min.js')
+    script(src='javascripts/vfs_fonts.js')
+    script(src='javascripts/buttons.html5.min.js')
+    script(src='javascripts/buttons.print.min.js')
+    script(src='javascripts/jquery-1.11.1.min.js')
+    script(src='javascripts/bootstrap.min.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js")
+    script(src='javascripts/pdf.js')
+    script(src='https://code.jquery.com/jquery-3.4.1.min.js')
+    script(src='javascripts/modernizr.custom.js')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js")
+    script(src="https://unpkg.com/splitting@1.0.5/dist/splitting.min.js")
+    script(src='javascripts/click.js')
+    script.
+      $(document).ready(function () {
+      $('#example2').dataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copy',
+                title: 'Report'
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'excelHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'print',
+                title: 'Report'
+            }
+        ]
+      });
+      });
+      $(document).ready(function () {
+      $('#example3').dataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copy',
+                title: 'Report'
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'excelHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'print',
+                title: 'Report'
+            }
+        ]
+      });
+      });
+      $(document).ready(function () {
+      $('#example4').dataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'copy',
+                title: 'Report'
+            },
+            {
+                extend: 'csvHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'excelHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'pdfHtml5',
+                title: 'Report'
+            },
+            {
+                extend: 'print',
+                title: 'Report'
+            }
+        ]
+      });
+      });
+    script.
+      Splitting();
+      $('.srch').submit(function(event){
+      var input, filter, table, tr, td, i, txtValue;
+      document.getElementById("example5").style.display = 'block';
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("example5");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++)
+      {
+      td = tr[i].getElementsByTagName("td")[3];
+      if (td)
+      {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1)
+      {
+      tr[i].style.display = "";
+      }
+      else
+      {
+      tr[i].style.display = "none";
+      }
+      }
+      }
+      event.preventDefault();
+      var emailText = $('#myInput').val();
+      $(".field").append("<p data-splitting='chars'>" + emailText + "</p>");
+      Splitting();
+      $("#wrap").addClass("plunge");
+      setTimeout(function(){
+      $('#myInput').val('');
+      $( ".field p" ).remove();
+      $("#wrap").removeClass("plunge");
+      }, 4000);
+      }); 
+
+     //these 2 script links must be placed at bottom only, else fails to work
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+    script(src='javascripts/jquery.dlmenu.js') 
+    script.
+      function toggle()
+        {
+          if(document.getElementById('fmgrp').style.display=='show')
+          {
+           document.getElementById('myInput').style.display='none';
+          }
+          else
+          {
+           document.getElementById('example5').style.display='none';
+          }
+        } 
+    script.
+      $(function() {
+      $( '#dl-menu' ).dlmenu({
+      animationClasses : 
+      { 
+       classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' 
+      }
+      });
+      });
+   
+      //should be placed here only to run seconds in real time(dont save in click.js)
+    script.
+      window.onload = date_time('date_time');
+      function date_time(id)
+      {
+        date = new Date;
+        ampm = date.ampm;
+        year = date.getFullYear();
+        month = date.getMonth();
+        months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'Jully', 'August', 'September', 'October', 'November', 'December');
+        d = date.getDate();
+        day = date.getDay();
+        days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+        h = date.getHours();
+        if(h<10)
+        {
+          h = "0"+h;
+        }
+        m = date.getMinutes();
+        if(m<10)
+        {
+          m = "0"+m;
+        }
+        s = date.getSeconds();
+        if(s<10)
+        {
+          s = "0"+s;
+        }
+        ampm = date.getHours() >= 12 ? 'pm' : 'am';
+        result = ''+days[day]+' '+months[month]+' '+d+' '+year+'<br>'+'Time : '+h+':'+m+':'+s+''+ampm;
+        document.getElementById(id).innerHTML = result;
+        setTimeout('date_time("'+id+'");','1000');
+        return true;
+        }
+
+    script.
+      window.onload = function() {
+      document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+      }, false);
+      document.addEventListener("keydown", function(e) {
+      // "J" key
+      if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+      alert('not allowed');
+      disabledEvent(e);
+      }
+      // "F12" key
+      if (event.keyCode == 123) {
+      alert('Too smart!\nBut you are not allowed for this action');
+      disabledEvent(e);
+      }
+      }, false);
+      function disabledEvent(e){
+      if (e.stopPropagation){
+      e.stopPropagation();
+      } else if (window.event){
+      window.event.cancelBubble = true;
+      }
+      e.preventDefault();
+      return false;
+      }
+      };
+      
+    script.
+      document.onkeydown = function(e) 
+      {
+        if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 73 || e.keyCode === 85 || e.keyCode === 117)) 
+          {
+            alert('Too smart!\nBut you are not allowed for this action');
+            return false;
+          } 
+        else 
+          {
+            return true;
+          }
+      };
+    
